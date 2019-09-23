@@ -1,0 +1,16 @@
+﻿@model Images
+@using WebP.Models
+
+<form method="post" enctype="multipart/form-data">
+    <h2>upload image</h2>
+    <input name="image" type="file" />
+    <input type="submit" value="Upload" />
+</form>
+
+@if (Model != null)
+{
+    <picture>
+        <source srcset="@Model.WebPImage" type="image/webp" />
+        <img src="@Model.NormalImage" style="height:50vh;" alt="Could not find image" />
+    </picture>
+}

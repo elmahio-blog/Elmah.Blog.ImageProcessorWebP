@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebP", "WebP\WebP.csproj", "{C9B38233-40F1-4EAC-A6B7-CD2F38D018FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9B38233-40F1-4EAC-A6B7-CD2F38D018FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9B38233-40F1-4EAC-A6B7-CD2F38D018FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9B38233-40F1-4EAC-A6B7-CD2F38D018FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9B38233-40F1-4EAC-A6B7-CD2F38D018FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3C7CAD6-3FEF-46AF-ACA5-F0FC4F7D120E}
+	EndGlobalSection
+EndGlobal
