@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ImageProcessor;
+﻿using ImageProcessor;
 using ImageProcessor.Plugins.WebP.Imaging.Formats;
-using System.Linq;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Linq;
 using WebP.Models;
 
 namespace WebP.Controllers
 {
     public class HomeController : Controller
     {
-        IHostingEnvironment hostingEnvironment;
+        private readonly IHostingEnvironment hostingEnvironment;
 
         public HomeController(IHostingEnvironment hostingEnvironment)
         {
@@ -27,10 +27,21 @@ namespace WebP.Controllers
         public IActionResult Index(IFormFile image)
         {
             // Check if valid image type (can be extended with more rigorous checks)
-            if (image == null) return View();
-            if (image.Length < 1) return View();
+            if (image == null)
+            {
+                return View();
+            }
+
+            if (image.Length < 1)
+            {
+                return View();
+            }
+
             string[] allowedImageTypes = new string[] { "image/jpeg", "image/png" };
-            if (!allowedImageTypes.Contains(image.ContentType.ToLower())) return View();
+            if (!allowedImageTypes.Contains(image.ContentType.ToLower()))
+            {
+                return View();
+            }
 
             // Prepare paths for saving images
             string imagesPath = Path.Combine(hostingEnvironment.WebRootPath, "images");
@@ -39,13 +50,13 @@ namespace WebP.Controllers
             string webPImagePath = Path.Combine(imagesPath, webPFileName);
 
             // Save the image in its original format for fallback
-            using (var normalFileStream = new FileStream(normalImagePath, FileMode.Create))
+            using (FileStream normalFileStream = new FileStream(normalImagePath, FileMode.Create))
             {
                 image.CopyTo(normalFileStream);
             }
 
             // Then save in WebP format
-            using (var webPFileStream = new FileStream(webPImagePath, FileMode.Create))
+            using (FileStream webPFileStream = new FileStream(webPImagePath, FileMode.Create))
             {
                 using (ImageFactory imageFactory = new ImageFactory(preserveExifData: false))
                 {
@@ -56,9 +67,11 @@ namespace WebP.Controllers
                 }
             }
 
-            Images viewModel = new Images();
-            viewModel.NormalImage = "/images/" + image.FileName;
-            viewModel.WebPImage = "/images/" + webPFileName;
+            Images viewModel = new Images
+            {
+                NormalImage = "/images/" + image.FileName,
+                WebPImage = "/images/" + webPFileName
+            };
 
             return View(viewModel);
         }
